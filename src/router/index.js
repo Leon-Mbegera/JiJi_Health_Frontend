@@ -7,8 +7,9 @@ import Categories from '@/views/Categories.vue'
 import { useAuthStore } from '@/stores/auth'
 
 const routes = [
-  { path: '/', redirect: '/dashboard' },
+  { path: '/', redirect: '/login' },
   { path: '/login', component: Login },
+  { path: '/signup', component: Register },
   {
     path: '/dashboard',
     component: Dashboard,
