@@ -2,10 +2,19 @@
 @import './base.css';
 
 #app {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  font-weight: normal;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.input-fields {
+  margin-bottom: 10px;
+}
+
+.navbar {
+  margin-bottom: 1rem;
 }
 
 a,
