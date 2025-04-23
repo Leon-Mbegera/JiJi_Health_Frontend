@@ -1,8 +1,9 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import Login from '@/pages/Login.vue'
-import Dashboard from '@/pages/Dashboard.vue'
-import Tasks from '@/pages/Tasks.vue'
-import Categories from '@/pages/Categories.vue'
+import Register from '@/views/Register.vue'
+import Login from '@/views/Login.vue'
+import Dashboard from '@/views/Dashboard.vue'
+import Tasks from '@/views/Tasks.vue'
+import Categories from '@/views/Categories.vue'
 import { useAuthStore } from '@/stores/auth'
 
 const routes = [
