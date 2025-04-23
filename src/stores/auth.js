@@ -8,16 +8,18 @@ export const useAuthStore = defineStore('auth', {
   }),
   actions: {
     async login(email, password) {
-      const res = await api.post('/login', { email, password })
+      console.log("does execution get here", email, password)
+      const res = await api.post('/login', { user: { email, password } })
+
       this.token = res.data.token
       localStorage.setItem('token', this.token)
-      await this.getProfile()
     },
-    async signup(payload) {
-      const res = await api.post('/signup', payload)
+    async signup(firstName, lastName, email, password, passwordConfirmation) {
+      console.log("does execution get here", firstName, lastName, email, password, passwordConfirmation)
+      const res = await api.post('/signup', { user: { first_name: firstName, last_name: lastName, email: email, password: password, password_confirmation: passwordConfirmation } })
+      console.log("response", res)
       this.token = res.data.token
       localStorage.setItem('token', this.token)
-      await this.getProfile()
     },
     async logout() {
       await api.delete('/logout')
