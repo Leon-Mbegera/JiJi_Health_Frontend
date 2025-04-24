@@ -2,7 +2,7 @@
   <form @submit.prevent="onSubmit" class="category-form">
     <div class="form-group">
       <label for="name" class="form-label">Name:</label>
-      <input id="name" type="text" v-model="formData.name" required class="form-input" />
+      <input id="name" type="text" v-model="formData.name" class="form-input" />
     </div>
 
     <div class="form-group">
