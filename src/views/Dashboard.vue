@@ -99,9 +99,7 @@ const formatPriority = (priority) => {
 }
 
 onMounted(() => {
-  if (!dashboardStore.stats && !dashboardStore.loading) {
-    dashboardStore.fetchDashboardStats()
-  }
+  dashboardStore.fetchDashboardStats()
 })
 </script>
 

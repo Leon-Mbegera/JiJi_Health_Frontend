@@ -40,8 +40,8 @@ router.afterEach(() => {
 
     <nav :class="['mobile-nav', { 'mobile-nav-open': isMobileMenuOpen }]">
       <RouterLink to="/dashboard" class="mobile-nav-link">Dashboard</RouterLink>
-      <RouterLink to="/tasks" class="mobile-nav-link">Tasks</RouterLink>
       <RouterLink to="/categories" class="mobile-nav-link">Categories</RouterLink>
+      <RouterLink to="/tasks" class="mobile-nav-link">Tasks</RouterLink>
       <RouterLink to="/profile" class="mobile-nav-link">Profile</RouterLink>
       <button @click="handleLogout" class="mobile-logout-button">Logout</button>
     </nav>
