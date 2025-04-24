@@ -31,9 +31,8 @@
               <router-link
                 :to="{ name: 'TaskDetail', params: { id: task.id } }"
                 class="action-link view-link"
+                >View/Edit</router-link
               >
-                View/Edit
-              </router-link>
               <button @click="deleteTask(task.id)" class="action-link delete-link">Delete</button>
             </td>
           </tr>
@@ -70,7 +69,6 @@ const deleteTask = async (taskId) => {
   if (confirm('Are you sure you want to delete this task?')) {
     try {
       await tasksStore.deleteTask(taskId)
-      console.log('Task deleted successfully:', taskId)
       tasksStore.error = null
     } catch (error) {
       console.error('Failed to delete task:', error)
@@ -154,4 +152,34 @@ const deleteTask = async (taskId) => {
 }
 
 .action-link {
-  text-decoration:
+  text-decoration: none;
+  margin-right: 0.5rem;
+  cursor: pointer;
+  display: inline-block;
+}
+
+.action-link:last-child {
+  margin-right: 0;
+}
+
+.view-link {
+  color: #3b82f6;
+}
+
+.view-link:hover {
+  text-decoration: underline;
+}
+
+.delete-link {
+  color: #ef4444;
+  background: none;
+  border: none;
+  padding: 0;
+  font-size: inherit;
+  line-height: inherit;
+}
+
+.delete-link:hover {
+  text-decoration: underline;
+}
+</style>
