@@ -9,12 +9,6 @@ import AuthenticatedLayout from '@/layouts/AuthenticatedLayout.vue'
 
 const routes = [
   {
-    path: '/',
-    name: 'Login',
-    component: Login,
-    meta: { requiresAuth: false },
-  },
-    {
     path: '/login',
     name: 'Login',
     component: Login,
@@ -27,14 +21,37 @@ const routes = [
     meta: { requiresAuth: false },
   },
   {
-    path: '/dashboard',
+    path: '/',
+    redirect: () => {
+      const auth = useAuthStore()
+      const isAuthenticated = !!auth.token
+      if (isAuthenticated) {
+        return { name: 'Dashboard' }
+      } else {
+        return { name: 'Login' }
+      }
+    },
+    meta: { requiresAuth: false }
+  },
+  {
+    path: '/',
     component: AuthenticatedLayout,
     meta: { requiresAuth: true },
     children: [
       {
-        path: '',
+        path: 'dashboard',
         name: 'Dashboard',
         component: Dashboard,
+      },
+      {
+        path: 'tasks',
+        name: 'Tasks',
+        component: Tasks,
+      },
+      {
+        path: 'categories',
+        name: 'Categories',
+        component: Categories,
       },
     ],
   },
@@ -45,14 +62,18 @@ const router = createRouter({
   routes,
 })
 
-router.beforeEach((to, from, next) => {
+router.beforeEach(async (to, from, next) => {
   const auth = useAuthStore()
   const isAuthenticated = !!auth.token
 
   if (to.meta.requiresAuth && !isAuthenticated) {
     next({ name: 'Login' })
   } else if (!to.meta.requiresAuth && isAuthenticated) {
-    next({ name: 'Dashboard' })
+    if (to.name === 'Login' || to.name === 'Signup') {
+       next({ name: 'Dashboard' })
+    } else {
+       next()
+    }
   } else {
     next()
   }
