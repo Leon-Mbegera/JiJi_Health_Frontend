@@ -22,10 +22,9 @@ export const useAuthStore = defineStore('auth', {
       localStorage.setItem('token', this.token)
     },
     async logout() {
-      await api.delete('/logout')
       this.token = ''
       this.user = null
-      localStorage.removeItem('token')
+      localStorage.clear()
     },
     async getProfile() {
       const res = await api.get('/profile')

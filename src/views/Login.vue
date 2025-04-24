@@ -16,7 +16,11 @@
           class="input-fields block w-full rounded-md border border-cyan-300 py-2 px-3 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
         />
       </div>
-      <button class="bg-cyan-500 text-white px-3 py-2 hover:cursor-pointer">Login</button>
+      <div class="flex flex-col space-y-4">
+        <button class="bg-cyan-500 text-white px-3 py-2 hover:cursor-pointer mb-2">Login</button>
+        <div>Or</div>
+        <RouterLink to="/signup">Sign up here</RouterLink>
+      </div>
     </form>
   </div>
 </template>
