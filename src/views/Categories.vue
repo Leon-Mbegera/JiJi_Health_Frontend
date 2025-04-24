@@ -39,8 +39,9 @@
               <router-link
                 :to="{ name: 'CategoryDetail', params: { id: category.id } }"
                 class="action-link view-link"
-                >View/Edit</router-link
               >
+                View/Edit
+              </router-link>
               <button @click="deleteCategory(category.id)" class="action-link delete-link">
                 Delete
               </button>
@@ -67,6 +68,7 @@
 import { onMounted } from 'vue'
 import { useCategoriesStore } from '@/stores/categories'
 import { RouterLink } from 'vue-router'
+import api from '@/api/axios'
 
 const categoriesStore = useCategoriesStore()
 
@@ -74,8 +76,20 @@ onMounted(() => {
   categoriesStore.fetchCategories()
 })
 
-const deleteCategory = (categoryId) => {
-  console.log('Delete category:', categoryId)
+const deleteCategory = async (categoryId) => {
+  if (confirm('Are you sure you want to delete this category?')) {
+    try {
+      await api.delete(`/categories/${categoryId}`)
+      console.log('Category deleted successfully:', categoryId)
+      categoriesStore.categories = categoriesStore.categories.filter(
+        (category) => category.id !== categoryId,
+      )
+      categoriesStore.error = null
+    } catch (error) {
+      console.error('Failed to delete category:', error)
+      categoriesStore.error = 'Failed to delete category. Please try again.'
+    }
+  }
 }
 </script>
 
