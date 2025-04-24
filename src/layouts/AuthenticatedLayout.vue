@@ -51,8 +51,8 @@ router.afterEach(() => {
         <h2 class="sidebar-title">Navigation</h2>
         <nav class="sidebar-nav">
           <RouterLink to="/dashboard" class="sidebar-nav-link">Dashboard</RouterLink>
-          <RouterLink to="/tasks" class="sidebar-nav-link">Tasks</RouterLink>
           <RouterLink to="/categories" class="sidebar-nav-link">Categories</RouterLink>
+          <RouterLink to="/tasks" class="sidebar-nav-link">Tasks</RouterLink>
           <RouterLink to="/profile" class="sidebar-nav-link">My Profile</RouterLink>
         </nav>
       </aside>
