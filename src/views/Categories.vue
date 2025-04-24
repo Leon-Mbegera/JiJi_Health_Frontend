@@ -68,7 +68,6 @@
 import { onMounted } from 'vue'
 import { useCategoriesStore } from '@/stores/categories'
 import { RouterLink } from 'vue-router'
-import api from '@/api/axios'
 
 const categoriesStore = useCategoriesStore()
 
@@ -79,11 +78,8 @@ onMounted(() => {
 const deleteCategory = async (categoryId) => {
   if (confirm('Are you sure you want to delete this category?')) {
     try {
-      await api.delete(`/categories/${categoryId}`)
+      await categoriesStore.deleteCategory(categoryId)
       console.log('Category deleted successfully:', categoryId)
-      categoriesStore.categories = categoriesStore.categories.filter(
-        (category) => category.id !== categoryId,
-      )
       categoriesStore.error = null
     } catch (error) {
       console.error('Failed to delete category:', error)
