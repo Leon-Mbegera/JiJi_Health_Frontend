@@ -3,6 +3,8 @@ import Signup from '@/views/Register.vue'
 import Login from '@/views/Login.vue'
 import Dashboard from '@/views/Dashboard.vue'
 import Tasks from '@/views/Tasks.vue'
+import TaskCreate from '@/views/TaskCreate.vue'
+import TaskDetail from '@/views/TaskDetail.vue'
 import Categories from '@/views/Categories.vue'
 import CategoryCreate from '@/views/CategoryCreate.vue'
 import CategoryDetail from '@/views/CategoryDetail.vue'
@@ -48,24 +50,45 @@ const routes = [
       },
       {
         path: 'tasks',
-        name: 'Tasks',
-        component: Tasks,
+        children: [
+          {
+            path: '',
+            name: 'Tasks',
+            component: Tasks,
+          },
+          {
+            path: 'new',
+            name: 'TaskCreate',
+            component: TaskCreate,
+          },
+          {
+            path: ':id',
+            name: 'TaskDetail',
+            component: TaskDetail,
+            props: true,
+          },
+        ]
       },
       {
         path: 'categories',
-        name: 'Categories',
-        component: Categories,
-      },
-      {
-        path: 'categories/new',
-        name: 'CategoryCreate',
-        component: CategoryCreate,
-      },
-      {
-        path: 'categories/:id',
-        name: 'CategoryDetail',
-        component: CategoryDetail,
-        props: true,
+        children: [
+          {
+            path: '',
+            name: 'Categories',
+            component: Categories,
+          },
+          {
+            path: 'new',
+            name: 'CategoryCreate',
+            component: CategoryCreate,
+          },
+          {
+            path: ':id',
+            name: 'CategoryDetail',
+            component: CategoryDetail,
+            props: true,
+          },
+        ]
       },
       {
         path: 'profile',
@@ -89,11 +112,12 @@ router.beforeEach(async (to, from, next) => {
     next({ name: 'Login' })
   } else if (!to.meta.requiresAuth && isAuthenticated) {
     if (to.name === 'Login' || to.name === 'Signup') {
-      next({ name: 'Dashboard' })
+       next({ name: 'Dashboard' })
     } else {
-      next()
+       next()
     }
-  } else {
+  }
+  else {
     next()
   }
 })
