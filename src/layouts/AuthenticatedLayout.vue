@@ -1,11 +1,11 @@
 <script setup>
-import { ref } from 'vue'
 import { RouterLink, RouterView } from 'vue-router'
-import { useRouter } from 'vue-router'
 import { useAuthStore } from '@/stores/auth'
+import { useRouter } from 'vue-router'
+import { ref } from 'vue'
 
+const authStore = useAuthStore()
 const router = useRouter()
-const auth = useAuthStore()
 const isMobileMenuOpen = ref(false)
 
 const toggleMobileMenu = () => {
@@ -14,13 +14,10 @@ const toggleMobileMenu = () => {
 
 const handleLogout = async () => {
   try {
-    console.log('Logged out successfully')
-    auth.clearAuthData()
+    await authStore.logout()
     router.push({ name: 'Login' })
   } catch (error) {
-    console.error('Logout failed:', error)
-    auth.clearAuthData()
-    router.push({ name: 'Login' })
+    console.error('An unexpected error occurred during handleLogout:', error)
   }
 }
 
@@ -110,16 +107,6 @@ router.afterEach(() => {
   align-items: center;
 }
 
-.nav-link {
-  margin-left: 1rem;
-  text-decoration: none;
-  color: white;
-}
-
-.nav-link:hover {
-  text-decoration: underline;
-}
-
 .logout-button {
   background-color: white;
   color: #f472b6;
@@ -128,6 +115,7 @@ router.afterEach(() => {
   margin-left: 1rem;
   cursor: pointer;
   border: none;
+  transition: background-color 0.3s ease;
 }
 
 .logout-button:hover {
@@ -179,6 +167,7 @@ router.afterEach(() => {
   cursor: pointer;
   border: none;
   align-self: flex-start;
+  transition: background-color 0.3s ease;
 }
 
 .mobile-logout-button:hover {
