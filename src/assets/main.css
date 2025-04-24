@@ -55,3 +55,71 @@ a,
     padding: 2px;
   }
 }
+
+/* My native classes */
+
+/* src/assets/main.css */
+
+.container {
+  width: 100%;
+  margin: 2rem;
+  padding: 1rem;
+}
+
+.page-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.loading-message,
+.no-data-message {
+  text-align: center;
+  color: #6b7280;
+}
+
+.error-message {
+  text-align: center;
+  color: #ef4444;
+}
+
+.table-container {
+  overflow-x: auto;
+}
+
+.data-table {
+  min-width: 100%;
+  background-color: #fff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 0.25rem;
+}
+
+.table-header {
+  padding: 0.5rem 1rem;
+  border-bottom: 1px solid #e5e7eb;
+  text-align: left;
+  color: #374151;
+  font-weight: 600;
+}
+
+.table-row:hover {
+  background-color: #f9fafb;
+}
+
+.table-cell {
+  padding: 0.5rem 1rem;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.data-table tbody tr:last-child .table-cell {
+  border-bottom: none;
+}
+
+.color-swatch {
+  display: inline-block;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 9999px;
+  vertical-align: middle;
+  margin-right: 0.5rem;
+}
