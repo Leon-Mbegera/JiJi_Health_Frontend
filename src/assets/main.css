@@ -17,6 +17,11 @@
   margin-bottom: 1rem;
 }
 
+.mx-4 {
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+
 a,
 .green {
   text-decoration: none;
@@ -35,11 +40,18 @@ a,
   body {
     display: flex;
     place-items: center;
+    overflow: auto;
+    scrollbar-width: none; /* Firefox */
+  }
+
+  /* Chrome, Edge, and Safari */
+  body::-webkit-scrollbar {
+    display: none;
   }
 
   #app {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    padding: 0 2rem;
+    padding: 2px;
   }
 }
