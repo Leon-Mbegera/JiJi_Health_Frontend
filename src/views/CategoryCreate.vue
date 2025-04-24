@@ -31,14 +31,23 @@ const handleCreateCategory = async (formData) => {
   } catch (error) {
     console.error('Category creation failed:', error)
 
-    if (error.response && error.response.data && error.response.data.errors) {
-      const errorMessages = Object.values(error.response.data.errors).flat().join(', ')
+    if (error.response && error.response.data && error.response.data) {
+      const backendErrors = error.response.data
+      let errorMessages = ''
+
+      for (const field in backendErrors) {
+        if (backendErrors.hasOwnProperty(field)) {
+          const messages = backendErrors[field].join(', ')
+          errorMessages += `${field.replace('_', ' ')} ${messages}. `
+        }
+      }
+
       if (categoryFormRef.value) {
-        categoryFormRef.value.error = errorMessages
+        categoryFormRef.value.error = errorMessages.trim()
       }
     } else {
       if (categoryFormRef.value) {
-        categoryFormRef.value.error = 'An unexpected error occurred during category creation.'
+        categoryFormRef.value.error = 'An unexpected error occurred during task creation.'
       }
     }
   }
