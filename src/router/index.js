@@ -4,6 +4,9 @@ import Login from '@/views/Login.vue'
 import Dashboard from '@/views/Dashboard.vue'
 import Tasks from '@/views/Tasks.vue'
 import Categories from '@/views/Categories.vue'
+import CategoryCreate from '@/views/CategoryCreate.vue'
+import CategoryDetail from '@/views/CategoryDetail.vue'
+import Profile from '@/views/Profile.vue'
 import { useAuthStore } from '@/stores/auth'
 import AuthenticatedLayout from '@/layouts/AuthenticatedLayout.vue'
 
@@ -22,7 +25,7 @@ const routes = [
   },
   {
     path: '/',
-    redirect: () => {
+    redirect: (to) => {
       const auth = useAuthStore()
       const isAuthenticated = !!auth.token
       if (isAuthenticated) {
@@ -53,6 +56,22 @@ const routes = [
         name: 'Categories',
         component: Categories,
       },
+      {
+        path: 'categories/new',
+        name: 'CategoryCreate',
+        component: CategoryCreate,
+      },
+      {
+        path: 'categories/:id',
+        name: 'CategoryDetail',
+        component: CategoryDetail,
+        props: true,
+      },
+      {
+        path: 'profile',
+        name: 'Profile',
+        component: Profile,
+      },
     ],
   },
 ]
@@ -70,9 +89,9 @@ router.beforeEach(async (to, from, next) => {
     next({ name: 'Login' })
   } else if (!to.meta.requiresAuth && isAuthenticated) {
     if (to.name === 'Login' || to.name === 'Signup') {
-       next({ name: 'Dashboard' })
+      next({ name: 'Dashboard' })
     } else {
-       next()
+      next()
     }
   } else {
     next()
