@@ -93,9 +93,7 @@ const formData = ref({
 })
 
 const error = ref(null)
-
 const emit = defineEmits(['submit'])
-
 const categoriesStore = useCategoriesStore()
 
 onMounted(() => {
@@ -178,7 +176,49 @@ defineExpose({
 .form-input:focus,
 .form-select:focus {
   outline: none;
-  border-color: #2563eb;
-  box-shadow: 0 0 0 1px #2563eb;
+  box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.5);
+}
+
+.form-actions {
+  margin-top: 1.5rem;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.submit-button {
+  background-color: #06b6d4;
+  color: white;
+  font-weight: bold;
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  border: none;
+  transition: background-color 0.3s ease;
+}
+
+.submit-button:hover {
+  background-color: #0891b2;
+}
+
+.submit-button:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(6, 182, 212, 0.5);
+}
+
+.error-message {
+  color: #dc2626;
+  margin-top: 0.5rem;
+}
+
+.loading-inline {
+  color: #2563eb;
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+}
+
+.error-inline {
+  color: #dc2626;
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
 }
 </style>
