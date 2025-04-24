@@ -56,7 +56,7 @@ router.afterEach(() => {
           <RouterLink to="/dashboard" class="sidebar-nav-link">Dashboard</RouterLink>
           <RouterLink to="/tasks" class="sidebar-nav-link">Tasks</RouterLink>
           <RouterLink to="/categories" class="sidebar-nav-link">Categories</RouterLink>
-          <RouterLink to="/profile" class="sidebar-nav-link">Profile</RouterLink>
+          <RouterLink to="/profile" class="sidebar-nav-link">My Profile</RouterLink>
         </nav>
       </aside>
 
